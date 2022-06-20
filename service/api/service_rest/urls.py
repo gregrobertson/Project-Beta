@@ -1,7 +1,4 @@
 from django.urls import path
-
-from service.api.service_rest.models import Technician
-
 from .views import api_list_technician, api_detail_technician, api_list_service
 
 
