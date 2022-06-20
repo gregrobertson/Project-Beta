@@ -1,4 +1,3 @@
-from importlib.resources import contents
 import json
 from .models import Technician, Service
 from common.json import ModelEncoder
@@ -55,11 +54,12 @@ def api_detail_technician(request, pk):
         return JsonResponse({"deleted": count > 0})
     else:
         content = json.loads(request.body)
-        technician = Technician.objects.filter(id=pk)
+        print(content)
+        technician = Technician.objects.filter(id=pk).update(**content)
         return JsonResponse(
             technician,
-            encoder = TechnicianEncoder
-
+            encoder=TechnicianEncoder,
+            safe=False
         )
 
 
