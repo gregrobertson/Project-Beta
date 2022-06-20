@@ -12,6 +12,10 @@ django.setup()
 # Import models from service_rest, here.
 # from service_rest.models import Something
 
+def get_automobile():
+    response = requests.get("http://inventory-api:8000/api/automobiles/")
+
+
 def poll():
     while True:
         print('Service poller polling for data')

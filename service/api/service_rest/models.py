@@ -2,7 +2,8 @@ from django.db import models
 
 
 # Create your models here.
-
+class AutomobileVO(models.Model):
+    vin = models.CharField(max_length=20)
 
 class Technician(models.Model):
     name = models.CharField(max_length=50)
@@ -10,9 +11,9 @@ class Technician(models.Model):
     
 
 class Service(models.Model):
-    vin = models.CharField(max_length=20)
     customer = models.CharField(max_length=50)
-    date_time = models.DateTimeField( auto_now=False, auto_now_add=False)
+    date = models.DateField( auto_now=False, auto_now_add=False)
+    time = models.TimeField( auto_now=False, auto_now_add=False)
     reason = models.CharField(max_length= 100)
     technician = models.ForeignKey(
         Technician,
@@ -20,5 +21,10 @@ class Service(models.Model):
         on_delete=models.PROTECT
     )
     is_vip = models.BooleanField(default=False)
+    vin = models.ForeignKey(
+        AutomobileVO,
+        related_name= "vin",
+        on_delete=models.PROTECT
+    )
 
 
