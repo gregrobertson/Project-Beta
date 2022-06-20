@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 class AutomobileVO(models.Model):
-    vin = models.CharField(max_length=20)
+    vin = models.CharField(max_length=20, unique=True)
 
 class Technician(models.Model):
     name = models.CharField(max_length=50)
@@ -17,14 +17,14 @@ class Service(models.Model):
     reason = models.CharField(max_length= 100)
     technician = models.ForeignKey(
         Technician,
-        related_name= "technician",
+        related_name= "services",
         on_delete=models.PROTECT
     )
     is_vip = models.BooleanField(default=False)
     vin = models.ForeignKey(
         AutomobileVO,
-        related_name= "vin",
+        related_name= "services",
         on_delete=models.PROTECT
-    )
+    ) 
 
 
