@@ -5,7 +5,7 @@ from django.forms import BooleanField
 
 # Create your models here.
 class AutomobileVO(models.Model):
-    vin = models.CharField(max_length=20, unique=True)
+    vin = models.CharField(max_length=17, unique=True)
 
     def __str__(self):
         return self.vin
@@ -15,9 +15,10 @@ class Technician(models.Model):
     employee_number = models.PositiveSmallIntegerField(unique=True)
    
     def __str__(self):
-        return f"{self.name} ID#{self.employee_number} "  
+        return f"{self.name} ID#{self.employee_number}"  
 
 class Service(models.Model):
+    vin = models.CharField(max_length=17)
     customer = models.CharField(max_length=50)
     date = models.DateField( max_length=20)
     time = models.TimeField( max_length=20)
@@ -28,12 +29,8 @@ class Service(models.Model):
         on_delete=models.PROTECT
     )
     is_vip = models.BooleanField(default=False)
-    vin = models.ForeignKey(
-        AutomobileVO,
-        related_name= "services",
-        on_delete=models.PROTECT
-    ) 
     is_finished = models.BooleanField(default=False)    
+    
     def __str__(self):
         return f"{self.customer}--->{self.reason}"
 

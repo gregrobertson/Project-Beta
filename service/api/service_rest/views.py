@@ -6,6 +6,13 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 
 
+class AutomobileVODetailEncoder(ModelEncoder):
+    model = AutomobileVO
+    properties = [
+        "vin",
+    ]
+
+
 class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = [
@@ -14,15 +21,16 @@ class TechnicianEncoder(ModelEncoder):
         "employee_number",
     ]
 
-class ServiceEncoder(ModelEncoder):
+class ServiceListEncoder(ModelEncoder):
     model = Service
     properties = [
         "id",
+        "vin",
         "customer",
         "date",
         "time",
-        "reason",
         "technician",
+        "reason",
         "is_vip",
         "is_finished"
     ]
@@ -30,8 +38,21 @@ class ServiceEncoder(ModelEncoder):
     encoders = {
         "technician":TechnicianEncoder(),
         }
-    def get_extra_data(self, o):
-        return {"vin": o.vin.vin}
+class ServiceDetailEncoder(ModelEncoder):
+    model = Service
+    properties = [
+        "vin",
+        "customer",
+        "date",
+        "time",
+        "technician",
+        "reason",
+        "is_vip",
+    ]
+
+    encoders = {
+        "technician":TechnicianEncoder(),
+        }
 
 @require_http_methods(["GET", "POST"])
 def api_list_technician(request):
@@ -72,54 +93,47 @@ def api_list_service(request):
        service = Service.objects.all()
        return JsonResponse(
         service,
-        encoder=ServiceEncoder,
+        encoder=ServiceListEncoder,
         safe=False
        ) 
     else:
         content = json.loads(request.body)
 
         try:
-            technician = Technician.objects.get(employee_number=content["name"])
-            content["name"] = technician
+            technician = Technician.objects.get(employee_number=content["technician"])
+            content["technician"] = technician
         except Technician.DoesNotExist:
             return JsonResponse(
                 {"message": "Employee Doesn't Exist"},
                 status=400,
             )
+        
+        vin_number = content["vin"]
+        if AutomobileVO.objects.filter(vin=vin_number).exists():
+            content["is_vip"] = True
+        else:
+            content["is_vip"] = False
+            
         service = Service.objects.create(**content)
         return JsonResponse(
             service,
-            encoder=ServiceEncoder,
+            encoder=ServiceDetailEncoder,
             safe=False
         )
 
-@require_http_methods(["DELETE", "GET", "PUT"])
+@require_http_methods(["DELETE", "PUT"])
 def api_detail_service(request, pk):
-    if request.method == "GET":
-        service = Service.objects.get(id=pk)
-        return JsonResponse(
-            service,
-            encoder=ServiceEncoder,
-            safe=False,
-        )
-    elif request.method == "DELETE":
+    if request.method == "DELETE":
         count, _ = Service.objects.filter(id=pk).delete()
-        return JsonResponse({"deleted": count > 0})
+        return JsonResponse(
+            {"deleted": count > 0}
+        )
     else:
         content = json.loads(request.body)
-        try:
-            if "vin" in content:
-                vin = AutomobileVO.objects.get(vin=content["vin"])
-                content["vin"] = vin
-        except AutomobileVO.DoesNotExist:
-            return JsonResponse(
-                {"message": "Invalid VIN"},
-                status=400,
-            )
         Service.objects.filter(id=pk).update(**content)
         service = Service.objects.get(id=pk)
         return JsonResponse(
             service,
-            encoder=ServiceEncoder,
+            encoder=ServiceDetailEncoder,
             safe=False,
         )    
