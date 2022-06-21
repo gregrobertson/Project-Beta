@@ -2,6 +2,7 @@ from json import JSONEncoder
 from django.urls import NoReverseMatch
 from django.db.models import QuerySet
 from datetime import datetime
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 class DateEncoder(JSONEncoder):
@@ -20,7 +21,7 @@ class QuerySetEncoder(JSONEncoder):
             return super().default(o)
 
 
-class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
+class ModelEncoder(DjangoJSONEncoder, QuerySetEncoder, JSONEncoder):
     encoders = {}
 
     def default(self, o):
