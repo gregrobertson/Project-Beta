@@ -121,9 +121,16 @@ def api_list_service(request):
             safe=False
         )
 
-@require_http_methods(["DELETE", "PUT"])
+@require_http_methods(["DELETE", "GET", "PUT"])
 def api_detail_service(request, pk):
-    if request.method == "DELETE":
+    if request.method == "GET":
+        service = Service.objects.get(id=pk)
+        return JsonResponse(
+            service,
+            encoder=ServiceDetailEncoder,
+            safe=False
+        )
+    elif request.method == "DELETE":
         count, _ = Service.objects.filter(id=pk).delete()
         return JsonResponse(
             {"deleted": count > 0}
@@ -135,5 +142,5 @@ def api_detail_service(request, pk):
         return JsonResponse(
             service,
             encoder=ServiceDetailEncoder,
-            safe=False,
+            safe=False
         )    
