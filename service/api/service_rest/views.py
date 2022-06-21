@@ -5,14 +5,6 @@ from common.json import ModelEncoder
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 
-# Create your views here.
-
-class AutomobileVOEncoder(ModelEncoder):
-    model = AutomobileVO
-    porperties = [
-
-    ]
-
 
 class TechnicianEncoder(ModelEncoder):
     model = Technician
@@ -26,17 +18,20 @@ class ServiceEncoder(ModelEncoder):
     model = Service
     properties = [
         "id",
-        "vin",
         "customer",
-        "date_time",
+        "date",
+        "time",
         "reason",
         "technician",
         "is_vip",
+        "is_finished"
     ]
 
     encoders = {
-        "technician":TechnicianEncoder()
+        "technician":TechnicianEncoder(),
         }
+    def get_extra_data(self, o):
+        return {"vin": o.vin.vin}
 
 @require_http_methods(["GET", "POST"])
 def api_list_technician(request):

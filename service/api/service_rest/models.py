@@ -1,4 +1,6 @@
+from pickle import FALSE
 from django.db import models
+from django.forms import BooleanField
 
 
 # Create your models here.
@@ -17,8 +19,8 @@ class Technician(models.Model):
 
 class Service(models.Model):
     customer = models.CharField(max_length=50)
-    date = models.CharField( max_length=20)
-    time = models.CharField( max_length=20)
+    date = models.DateField( max_length=20)
+    time = models.TimeField( max_length=20)
     reason = models.CharField(max_length= 100)
     technician = models.ForeignKey(
         Technician,
@@ -31,6 +33,7 @@ class Service(models.Model):
         related_name= "services",
         on_delete=models.PROTECT
     ) 
+    is_finished = models.BooleanField(default=False)    
     def __str__(self):
         return f"{self.customer}--->{self.reason}"
 
