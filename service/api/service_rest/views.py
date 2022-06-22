@@ -57,9 +57,9 @@ class ServiceDetailEncoder(ModelEncoder):
 @require_http_methods(["GET", "POST"])
 def api_list_technician(request):
     if request.method == "GET":
-        technician = Technician.objects.all()
+        technicians = Technician.objects.all()
         return JsonResponse(
-            {"technician": technician},
+            {"technicians": technicians},
             encoder = TechnicianEncoder,
         )
     else:
@@ -90,9 +90,9 @@ def api_detail_technician(request, pk):
 @require_http_methods(["GET", "POST"])
 def api_list_service(request):
     if request.method == "GET":
-       service = Service.objects.all()
+       services = Service.objects.all()
        return JsonResponse(
-        service,
+        {"services": services},
         encoder=ServiceListEncoder,
         safe=False
        ) 

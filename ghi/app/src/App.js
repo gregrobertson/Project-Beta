@@ -3,27 +3,55 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import TechnicianForm from './Service/TechnicianForm';
 import ServiceForm from './Service/ServiceForm';
+import ServiceList from './Service/ServiceList';
+import React from 'react';
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Nav />
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="technician">
-            <Route path="new" element={<TechnicianForm />} />
-            {/* <Route path="" element={<TechnicianList />} /> */}
-          </Route>
-          <Route path="service">
-            <Route path="new" element={<ServiceForm />} />
-            {/* <Route path="" element={<ServiceList />} /> */}
-            {/* <Route path="history" element={<ServiceHistory />} /> */}
-          </Route>
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
+
+
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
+
+  async componentDidMount() {
+    Promise.all([
+      await fetch('http://localhost:8080/api/service/'),
+
+    ])
+
+      //------------------------------------------>
+      .then(([service]) => {
+        return Promise.all([
+          service.json(),])
+      })
+
+      .then(([service]) => {
+        this.setState(service)
+      })
+
+  }
+  render() {
+    return (
+      <BrowserRouter>
+        <Nav />
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="technician">
+              <Route path="new" element={<TechnicianForm />} />
+              {/* <Route path="" element={<TechnicianList />} /> */}
+            </Route>
+            <Route path="service">
+              <Route path="new" element={<ServiceForm />} />
+              <Route path="" element={<ServiceList services={this.state.services} />} />
+              {/* <Route path="history" element={<ServiceHistory />} /> */}
+            </Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
-
 export default App;
