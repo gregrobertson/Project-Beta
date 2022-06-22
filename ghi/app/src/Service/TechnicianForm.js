@@ -6,18 +6,21 @@ class TechnicianForm extends React.Component {
 
         // Setting Deafault Value for each inout field in form -------------->
         this.state = {
-            technicianName: '',
+            name: '',
             employeeNumber: '',
         }
         //-------------------------------------------------------------------->
-        this.handleTechnicianNameChange = this.handleTechnicianNameChange.bind(this)
+        this.handleNameChange = this.handleNameChange.bind(this)
         this.handleEmployeeNumberChange = this.handleEmployeeNumberChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+
+
     }
 
     //Updating the component state with what you type/input into the form--->
-    handleTechnicianNameChange(event) {
+    handleNameChange(event) {
         const value = event.target.value;
-        this.setState({ technicianName: value })
+        this.setState({ name: value })
     }
     handleEmployeeNumberChange(event) {
         const value = event.target.value;
@@ -31,9 +34,8 @@ class TechnicianForm extends React.Component {
         event.preventDefault();
         const data = { ...this.state };
         /* Changing the format so that the request to the server matches what the server recieves */
-        data.technician_name = data.technicianName;
+
         data.employee_number = data.employeeNumber;
-        delete data.technicianName;
         delete data.employeeNumber;
         console.log(data);
 
@@ -53,7 +55,7 @@ class TechnicianForm extends React.Component {
 
             // Clearing the form after submission----------------->
             const cleared = {
-                technicianName: '',
+                name: '',
                 employeeNumber: '',
             }
             this.setState(cleared)
@@ -70,9 +72,9 @@ class TechnicianForm extends React.Component {
                             <h1>New Technician</h1>
                             <form onSubmit={this.handleSubmit} id="create-technician-form">
                                 <div className="form-floating mb-3">
-                                    <input onChange={this.handleTechnicianNameChange} value={this.state.technicianName} placeholder="Technician Name" type="text" manufacturer="technician_name" id="technician_name"
+                                    <input onChange={this.handleNameChange} value={this.state.name} placeholder="Name" type="text" manufacturer="name" id="name"
                                         className="form-control" />
-                                    <label htmlFor="technician_name">Technician Name</label>
+                                    <label htmlFor="name">Technician Name</label>
                                 </div>
                                 <div className="form-floating mb-3">
                                     <input onChange={this.handleEmployeeNumberChange} value={this.state.employeeNumber} placeholder="Employee Number" type="text" name="employee_number" id="employee_number"

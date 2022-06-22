@@ -13,44 +13,10 @@ class ServiceForm extends React.Component {
             technicians: [],
             reason: '',
         }
-        // console.log(this.state);
-        //-------------------------------------------------------------------->
-        // this.handleVinChange = this.handleVinChange.bind(this)
-        // this.handleCustomerChange = this.handleCustomerChange.bind(this)
-        // this.handleDateChange = this.handleDateChange.bind(this)
-        // this.handleTimeChange = this.handleTimeChange.bind(this)
-        // this.handleTechnicianChange = this.handleTechnicianChange.bind(this)
-        // this.handleReasonChange = this.handleReasonChange.bind(this)
         this.handleChange = this.handleChange.bind(this);
-
         this.handleSubmit = this.handleSubmit.bind(this)
-
     }
-    //Updating the component state with what you type/input into the form--->
-    // handleVinChange(event) {
-    //     const value = event.target.value;
-    //     this.setState({ vin: value })
-    // }
-    // handleCustomerChange(event) {
-    //     const value = event.target.value;
-    //     this.setState({ customer: value })
-    // }
-    // handleDateChange(event) {
-    //     const value = event.target.value;
-    //     this.setState({ date: value })
-    // }
-    // handleTimeChange(event) {
-    //     const value = event.target.value;
-    //     this.setState({ time: value })
-    // }
-    // handleTechnicianChange(event) {
-    //     const value = event.target.value;
-    //     this.setState({ technician: value })
-    // }
-    // handleReasonChange(event) {
-    //     const value = event.target.value;
-    //     this.setState({ reason: value })
-    // }
+
     handleChange(event) {
         const newState = {};
         newState[event.target.id] = event.target.value;
