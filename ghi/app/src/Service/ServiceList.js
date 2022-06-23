@@ -28,6 +28,16 @@ function ServiceList({ services }) {
         }
     }
 
+    //-----------------READABLE????------------------------------->
+    const isVip = a => (a) ? "✅" : "❌"
+
+    const centeredTd = str => <td className="align-middle">{str}</td>;
+
+    const button = (fn, cls, txt) => <td>
+        <button onClick={fn} className={cls}>{txt}</button>
+    </td>
+    //------------------------------------------------->
+
 
     return (
         <table className=' table table-striped '>
@@ -39,31 +49,28 @@ function ServiceList({ services }) {
                     <th>Time</th>
                     <th>Technician</th>
                     <th>Reason</th>
+                    <th>VIP</th>
                 </tr>
             </thead>
             <tbody>
-                {services && services.map(service => {
+                {services?.map(service => {
                     return (
                         <tr key={service.id}>
-                            <td>{service.vin}</td>
-                            <td>{service.customer}</td>
-                            <td>{service.date}</td >
-                            <td>{service.time}</td>
-                            <td>{service.technician.name}</td>
-                            <td>{service.reason}</td>
-                            <td>
-                                <button onClick={() => DeleteService(service.id)} type="button" className='btn btn-danger'>Cancel</button>
-                            </td>
-                            <td>
-                                <button onClick={() => isFinished(service.id)} type="button" className='btn btn-success'>Finished</button>
-                            </td>
+                            {centeredTd(service.vin)}
+                            {centeredTd(service.customer)}
+                            {centeredTd(service.date)}
+                            {centeredTd(service.time)}
+                            {centeredTd(service.technician.name)}
+                            {centeredTd(service.reason)}
+                            {centeredTd(isVip(service.is_vip))}
+                            {button(() => DeleteService(service.id), 'btn btn-danger', 'Cancel')}
+                            {button(() => isFinished(service.id), 'btn btn-success', 'Finished')}
                         </tr >
                     );
                 })}
             </tbody >
         </table >
     )
-
 }
 
 
