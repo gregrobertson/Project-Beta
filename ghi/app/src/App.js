@@ -7,6 +7,8 @@ import SalesForm from "./sales/SalesForm";
 import SalesList from "./sales/SalesList";
 import SalesHistoryList from "./sales/SalesHistoryList";
 
+
+
 function App(props) {
   return (
     <BrowserRouter>
@@ -14,6 +16,7 @@ function App(props) {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+
           <Route path="salesperson">
             <Route index element={<SalesPersonForm />} />
           </Route>

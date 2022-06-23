@@ -48,7 +48,7 @@ function SalesHistoryList(props) {
         id="salesPerson"
         aria-label="Default select example"
       >
-        <option>Select a Salesperson</option>
+        <option>Select A Salesperson</option>
         {props.salesreps.map((salesrep) => {
           return (
             <option
@@ -72,10 +72,10 @@ function SalesHistoryList(props) {
         <tbody>
           {salesData.map((salesperson) => {
             return (
-              <tr key={salesperson.automobile}>
-                <td>{salesperson.sales_person.name}</td>
+              <tr key={salesperson.id}>
+                <td>{salesperson.sales_person}</td>
                 <td>{salesperson.customer}</td>
-                <td>{salesperson.automobile}</td>
+                <td>{salesperson.vin}</td>
                 <td>${salesperson.price}</td>
               </tr>
             );
