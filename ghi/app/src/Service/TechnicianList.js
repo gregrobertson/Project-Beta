@@ -2,16 +2,6 @@ import React from "react";
 
 function TechnicianList({ technicians }) {
 
-    async function DeleteService(id) {
-        const deleteUrl = `http://localhost:8080/api/technician/${id}/`
-        const fetchConfig = {
-            method: "delete"
-        }
-        const response = await fetch(deleteUrl, fetchConfig)
-        if (response.ok) {
-            console.log('Delete Sucessfull', response)
-        }
-    }
 
 
     return (

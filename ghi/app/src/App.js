@@ -17,24 +17,28 @@ class App extends React.Component {
     this.state = {}
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     Promise.all([
-      await fetch('http://localhost:8080/api/service/'),
-      await fetch('http://localhost:8080/api/technician/'),
+      fetch('http://localhost:8080/api/service/'),
+      fetch('http://localhost:8080/api/technician/'),
+      fetch('http://localhost:8080/api/service/history'),
 
     ])
 
       //------------------------------------------>
-      .then(([service, technician]) => {
+      .then(([service, technician, history]) => {
         return Promise.all([
           service.json(),
-          technician.json()
+          technician.json(),
+          history.json(),
         ])
       })
 
-      .then(([service, technician]) => {
+      .then(([service, technician, history]) => {
         this.setState(service)
         this.setState(technician)
+        console.log(history);
+        this.setState(history)
 
       })
 
@@ -53,7 +57,7 @@ class App extends React.Component {
             <Route path="service">
               <Route path="new" element={<ServiceForm />} />
               <Route path="" element={<ServiceList services={this.state.services} />} />
-              <Route path="history" element={<ServiceHistory history={this.state.services} />} />
+              <Route path="history" element={<ServiceHistory history={this.state.history} />} />
             </Route>
           </Routes>
         </div>

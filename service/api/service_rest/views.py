@@ -87,10 +87,20 @@ def api_detail_technician(request, pk):
         )
 
 
+@require_http_methods(["GET"])
+def api_history_service(request):
+    if request.method == "GET":
+       services = Service.objects.all()
+       return JsonResponse(
+        {"history": services},
+        encoder=ServiceListEncoder,
+        safe=False
+       ) 
+
 @require_http_methods(["GET", "POST"])
 def api_list_service(request):
     if request.method == "GET":
-       services = Service.objects.all()
+       services = Service.objects.filter(is_finished = False)
        return JsonResponse(
         {"services": services},
         encoder=ServiceListEncoder,

@@ -16,11 +16,14 @@ function ServiceList({ services }) {
     async function isFinished(id) {
         const finishedUrl = `http://localhost:8080/api/service/${id}/`
         const fetchConfig = {
-            method: "put"
+            method: "put",
+            body: JSON.stringify({ "is_finished": true }),
+            headers: { "Content-Type": "application/json" }
         }
         const response = await fetch(finishedUrl, fetchConfig)
         if (response.ok) {
             console.log('Completed Sucessfully', response)
+
             window.location.reload()
         }
     }
@@ -41,7 +44,7 @@ function ServiceList({ services }) {
             <tbody>
                 {services && services.map(service => {
                     return (
-                        <tr key={service.vin}>
+                        <tr key={service.id}>
                             <td>{service.vin}</td>
                             <td>{service.customer}</td>
                             <td>{service.date}</td >

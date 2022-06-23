@@ -69,7 +69,7 @@ class ServiceForm extends React.Component {
         if (response.ok) {
             const data = await response.json();
             console.log(data);
-            this.setState({ technicians: data.technician })
+            this.setState({ technicians: data.technicians })
 
         }
     }
