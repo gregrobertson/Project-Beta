@@ -21,6 +21,7 @@ function ServiceList({ services }) {
         const response = await fetch(finishedUrl, fetchConfig)
         if (response.ok) {
             console.log('Completed Sucessfully', response)
+            window.location.reload()
         }
     }
 
