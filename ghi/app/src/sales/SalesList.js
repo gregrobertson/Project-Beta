@@ -33,11 +33,11 @@ class SalesList extends React.Component {
           <tbody>
             {this.state.sales.map((salesperson) => {
               return (
-                <tr key={salesperson.automobile}>
+                <tr key={salesperson.id}>
                   <td>{salesperson.sales_person.name}</td>
                   <td>{salesperson.sales_person.emp_no}</td>
                   <td>{salesperson.customer}</td>
-                  <td>{salesperson.automobile}</td>
+                  <td>{salesperson.vin}</td>
                   <td>${salesperson.price}</td>
                 </tr>
               );

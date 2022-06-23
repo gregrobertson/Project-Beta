@@ -43,7 +43,8 @@ class SalesHistoryListEncoder(ModelEncoder):
         return {
             "vin": o.automobile.vin,
             "sales_person": o.sales_person.employee_number,
-            "customer": o.customer.name
+            "customer": o.customer.name,
+            "emp_no":o.sales_person.employee_number,
         } 
 
     encoders = {
