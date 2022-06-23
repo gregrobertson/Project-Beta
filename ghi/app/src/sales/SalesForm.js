@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import Timer from "../UtilityComponents/Timer";
+import Timer from "../Timer/Timer";
 
 class SalesForm extends React.Component {
   constructor(props) {
