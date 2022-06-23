@@ -25,18 +25,20 @@ function ServiceHistory({ history }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {history && history.map(service => {
-                        return (
-                            <tr key={service.id}>
-                                <td>{service.vin}</td>
-                                <td>{service.customer}</td>
-                                <td>{service.date}</td >
-                                <td>{service.time}</td>
-                                <td>{service.technician.name}</td>
-                                <td>{service.reason}</td>
-                            </tr >
-                        );
-                    })}
+                    {history && history
+                        .filter(service => service.vin.includes(search))
+                        .map(service => {
+                            return (
+                                <tr key={service.id}>
+                                    <td>{service.vin}</td>
+                                    <td>{service.customer}</td>
+                                    <td>{service.date}</td >
+                                    <td>{service.time}</td>
+                                    <td>{service.technician.name}</td>
+                                    <td>{service.reason}</td>
+                                </tr >
+                            );
+                        })}
                 </tbody >
             </table >
         </>
