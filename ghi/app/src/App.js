@@ -4,6 +4,7 @@ import Nav from './Nav';
 import TechnicianForm from './Service/TechnicianForm';
 import ServiceForm from './Service/ServiceForm';
 import ServiceList from './Service/ServiceList';
+import TechnicianList from './Service/TechnicianList';
 import React from 'react';
 
 
@@ -18,17 +19,22 @@ class App extends React.Component {
   async componentDidMount() {
     Promise.all([
       await fetch('http://localhost:8080/api/service/'),
+      await fetch('http://localhost:8080/api/technician/'),
 
     ])
 
       //------------------------------------------>
-      .then(([service]) => {
+      .then(([service, technician]) => {
         return Promise.all([
-          service.json(),])
+          service.json(),
+          technician.json()
+        ])
       })
 
-      .then(([service]) => {
+      .then(([service, technician]) => {
         this.setState(service)
+        this.setState(technician)
+
       })
 
   }
@@ -41,7 +47,7 @@ class App extends React.Component {
             <Route path="/" element={<MainPage />} />
             <Route path="technician">
               <Route path="new" element={<TechnicianForm />} />
-              {/* <Route path="" element={<TechnicianList />} /> */}
+              <Route path="" element={<TechnicianList />} />
             </Route>
             <Route path="service">
               <Route path="new" element={<ServiceForm />} />

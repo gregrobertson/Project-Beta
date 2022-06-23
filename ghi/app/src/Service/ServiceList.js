@@ -2,6 +2,28 @@ import React from "react";
 
 function ServiceList({ services }) {
 
+    async function DeleteService(id) {
+        const deleteUrl = `http://localhost:8080/api/service/${id}/`
+        const fetchConfig = {
+            method: "delete"
+        }
+        const response = await fetch(deleteUrl, fetchConfig)
+        if (response.ok) {
+            console.log('Delete Sucessfull', response)
+            window.location.reload()
+        }
+    }
+    async function isFinished(id) {
+        const finishedUrl = `http://localhost:8080/api/service/${id}/`
+        const fetchConfig = {
+            method: "put"
+        }
+        const response = await fetch(finishedUrl, fetchConfig)
+        if (response.ok) {
+            console.log('Completed Sucessfully', response)
+        }
+    }
+
 
     return (
         <table className=' table table-striped '>
@@ -25,8 +47,12 @@ function ServiceList({ services }) {
                             <td>{service.time}</td>
                             <td>{service.technician.name}</td>
                             <td>{service.reason}</td>
-                            {/* <td> <button onClick={() => DeleteService(service.id)} type="button" className='btn btn-dark'>Delete</button>
-                            </td> */}
+                            <td>
+                                <button onClick={() => DeleteService(service.id)} type="button" className='btn btn-danger'>Cancel</button>
+                            </td>
+                            <td>
+                                <button onClick={() => isFinished(service.id)} type="button" className='btn btn-success'>Finished</button>
+                            </td>
                         </tr >
                     );
                 })}
