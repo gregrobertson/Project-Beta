@@ -54,14 +54,14 @@ class SalesPersonForm extends React.Component {
                 <input
                   onChange={this.handleChange}
                   value={this.state.name}
-                  placeholder="Salesperson Name"
+                  placeholder="SalesPerson Name"
                   required
                   type="text"
                   name="name"
                   id="name"
                   className="form-control"
                 />
-                <label htmlFor="name">Salesperson Name</label>
+                <label htmlFor="name">Sales Person Name</label>
               </div>
               <div className="form-floating mb-3">
                 <input

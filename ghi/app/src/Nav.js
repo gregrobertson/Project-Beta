@@ -40,7 +40,7 @@ function Nav() {
             </NavLink>
           </div>
         </div>
-        {/* <div className="p-2 dropdown">
+        <div className="p-2 dropdown">
           <NavLink
             className="btn btn-secondary dropdown-toggle"
             to="#"
@@ -66,7 +66,7 @@ function Nav() {
               Show Appointment History
             </NavLink>
           </div>
-        </div> */}
+        </div>
         <div className="p-2 dropdown">
           <NavLink
             className="btn btn-secondary dropdown-toggle"
@@ -81,7 +81,7 @@ function Nav() {
           </NavLink>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <NavLink className="dropdown-item" to="/salesperson">
-              New Salesperson
+              New Sales Person
             </NavLink>
             <NavLink className="dropdown-item" to="/customer">
               New Customer
@@ -93,7 +93,7 @@ function Nav() {
               Sales List
             </NavLink>
             <NavLink className="dropdown-item" to="/sales/history">
-              Salesperson History
+              Sales Person History
             </NavLink>
           </div>
         </div>

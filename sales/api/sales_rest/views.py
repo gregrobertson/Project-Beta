@@ -188,9 +188,9 @@ def list_sales(request):
         
         content = {
             **content,
-            "sales_person": SalesPerson.objects.get(employee_number=content["sales_person"]),
+            "sales_person": SalesPerson.objects.get(name=content["sales_person"]),
             "automobile": AutomobileVO.objects.get(vin=content["automobile"]),
-            "customer": Customer.objects.get(id=content["customer"]),
+            "customer": Customer.objects.get(name=content["customer"]),
         }
         
         sales = SalesHistory.objects.create(**content)
@@ -202,57 +202,6 @@ def list_sales(request):
         # print(content)
 
 
-    # if request.method == "GET":
-    #         sales = SalesHistory.objects.all()
-    #         return JsonResponse(
-    #             {"sales": sales},
-    #             encoder=SalesHistoryListEncoder,
-    #         )
-    # else:
-    #     content = json.loads(request.body)
-    #     print(content)
-
-
-    #     try:
-    #         auto_vin = content["automobile"]
-    #         auto = AutomobileVO.objects.get(vin=auto_vin)
-    #         content["automobile"] = auto
-    #         print("here is the vin", auto_vin)
-    #     except AutomobileVO.DoesNotExist:
-    #         return JsonResponse(
-    #             {"message": "Automobile not in system"},
-    #             status=400,
-    #         )
-
-    #     try:
-    #         salesperson_name = content["sales_person"]
-    #         salesperson = SalesPerson.objects.get(name=salesperson_name)
-    #         content["sales_person"] = salesperson
-    #         print("name of salesperson", salesperson)
-    #     except SalesPerson.DoesNotExist:
-    #         return JsonResponse(
-    #             {"message": "Salesperson not in system"},
-    #             status=400,
-    #         )
-
-    #     try:
-    #         pot_customer = content["customer"]
-    #         customer = Customer.objects.get(name=pot_customer)
-    #         content["customer"] = customer
-    #         print("customer", customer)
-    #     except Customer.DoesNotExist:
-    #         return JsonResponse(
-    #             {"message": "Customer does not exist"},
-    #             status=400,
-    #         )
-        
-    #     sales = SalesHistory.objects.create(**content)
-    #     print("sales price", sales)
-    #     return JsonResponse(
-    #         sales,
-    #         encoder=SalesHistoryDetailEncoder,
-    #         safe=False,
-    #     )
 
 
 
