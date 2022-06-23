@@ -10,8 +10,7 @@ function ServiceHistory({ history }) {
     return (
         <>
             <div className="input-group">
-                <input type="search" onChange={event => setSearch(event.target.value)} className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" className="btn btn-outline-primary btn-sm">search</button>
+                <input type="search" onChange={event => setSearch(event.target.value)} className="form-control rounded" placeholder="Search VIN#" aria-label="Search" aria-describedby="search-addon" />
             </div>
             <table className=' table table-striped '>
                 <thead>

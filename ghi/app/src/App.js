@@ -37,7 +37,6 @@ class App extends React.Component {
       .then(([service, technician, history]) => {
         this.setState(service)
         this.setState(technician)
-        console.log(history);
         this.setState(history)
 
       })

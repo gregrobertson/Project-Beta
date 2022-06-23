@@ -59,6 +59,7 @@ class TechnicianForm extends React.Component {
                 employeeNumber: '',
             }
             this.setState(cleared)
+            window.location.reload()
             //----------------------------------------------------->
         }
     }
