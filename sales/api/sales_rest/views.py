@@ -1,9 +1,11 @@
+from enum import auto
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from common.json import ModelEncoder
 from .models import AutomobileVO, Customer, SalesPerson, SalesHistory
 import json
+import requests 
 
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
@@ -193,7 +195,9 @@ def list_sales(request):
             "automobile": AutomobileVO.objects.get(vin=content["automobile"]),
             "customer": Customer.objects.get(name=content["customer"]),
         }
-        
+        content["automobile"].sold = True
+        content["automobile"].save()
+        requests.put(f'http://inventory-api:8000/api/automobiles/{content["automobile"].vin}/', json={"sold": True})  #created fSTRING made a URL to vinNumb then called PUT request to true
         sales = SalesHistory.objects.create(**content)
         return JsonResponse(
             sales,

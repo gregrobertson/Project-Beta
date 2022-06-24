@@ -5,7 +5,9 @@ function Nav() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
       <div className="container-fluid" id="work">
         <NavLink className="navbar-brand" to="/">
-          Piss Excellence
+          
+          <img src='https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/cougar-head-robert-chaponot.jpg' width="100" height="100"></img>
+          
         </NavLink>
         <div className="p-2 dropdown">
           <NavLink
