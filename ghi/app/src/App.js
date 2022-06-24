@@ -95,14 +95,14 @@ class App extends React.Component {
               <Route path="" element={<SalesForm />} />
               <Route
                 path="list"
-                element={<SalesList salespersons={props.salespersons} />}
+                element={<SalesList salespersons={this.props.salespersons} />}
               />
               <Route
                 path="history"
                 element={
                   <SalesHistoryList
-                    salespersons={props.salespersons}
-                    salesreps={props.salesreps}
+                    salespersons={this.props.salespersons}
+                    salesreps={this.props.salesreps}
                   />
                 }
               />
