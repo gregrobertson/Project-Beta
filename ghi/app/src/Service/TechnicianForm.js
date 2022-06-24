@@ -30,14 +30,15 @@ class TechnicianForm extends React.Component {
 
 
     //--Handling how the form is submitted----------------------------------->
+
     async handleSubmit(event) {
         event.preventDefault();
         const data = { ...this.state };
+
         /* Changing the format so that the request to the server matches what the server recieves */
 
         data.employee_number = data.employeeNumber;
         delete data.employeeNumber;
-        console.log(data);
 
         const technicianUrl = 'http://localhost:8080/api/technician/';
         const fetchConfig = {
@@ -47,12 +48,10 @@ class TechnicianForm extends React.Component {
                 'Content-Type': 'application/json',
             },
         };
-        const response = await fetch(technicianUrl, fetchConfig);
-        console.log(response);
-        if (response.ok) {
-            const newTechnician = await response.json();
-            console.log(newTechnician);
 
+        const response = await fetch(technicianUrl, fetchConfig);
+
+        if (response.ok) {
             // Clearing the form after submission----------------->
             const cleared = {
                 name: '',

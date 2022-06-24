@@ -8,18 +8,18 @@ import ServiceList from './Service/ServiceList';
 import TechnicianList from './Service/TechnicianList';
 import ServiceHistory from './Service/ServiceHistory';
 
-import SalesPersonForm from "./sales/SalesPersonForm";
-import CustomerForm from "./sales/CustomerForm";
-import SalesForm from "./sales/SalesForm";
-import SalesList from "./sales/SalesList";
-import SalesHistoryList from "./sales/SalesHistoryList";
+import SalesPersonForm from "./Sales/SalesPersonForm";
+import CustomerForm from "./Sales/CustomerForm";
+import SalesForm from "./Sales/SalesForm";
+import SalesList from "./Sales/SalesList";
+import SalesHistoryList from "./Sales/SalesHistoryList";
 
-import ManufacturerList from "./InventoryComponents/ManufacturerList";
-import ManufacturerForm from "./InventoryComponents/ManufacturerForm";
-import AutomobileList from "./InventoryComponents/AutomobileList";
-import AutomobileForm from "./InventoryComponents/AutomobileForm";
-import VehicleList from "./InventoryComponents/VehicleList";
-import VehicleForm from "./InventoryComponents/VehicleForm";
+import ManufacturerList from "./Inventory/ManufacturerList";
+import ManufacturerForm from "./Inventory/ManufacturerForm";
+import AutomobileList from "./Inventory/AutomobileList";
+import AutomobileForm from "./Inventory/AutomobileForm";
+import VehicleList from "./Inventory/VehicleList";
+import VehicleForm from "./Inventory/VehicleForm";
 
 import React from 'react';
 

@@ -65,11 +65,11 @@ function Nav() {
             <NavLink className="dropdown-item" to="/technician/new">
               Create Technician
             </NavLink>
-            <NavLink className="dropdown-item" to="/technician/new">
+            <NavLink className="dropdown-item" to="/technician/">
               Technicians
             </NavLink>
           </div>
-        </div>
+        </div >
         <div className="p-2 dropdown">
           <NavLink
             className="btn btn-secondary dropdown-toggle"
@@ -85,7 +85,7 @@ function Nav() {
           <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <NavLink className="dropdown-item" to="/salesperson">
               New Sales Person
-            </NavLink>
+            </NavLink >
             <NavLink className="dropdown-item" to="/customer">
               New Customer
             </NavLink>
@@ -97,15 +97,15 @@ function Nav() {
             </NavLink>
             <NavLink className="dropdown-item" to="/sales/history">
               Sales Person History
-            </NavLink>
-          </div>
-        </div>
+            </NavLink >
+          </div >
+        </div >
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item"></li>
           </ul>
         </div>
-      </div>
+      </div >
     </nav>
   );
 }

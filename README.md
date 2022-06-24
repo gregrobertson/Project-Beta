@@ -2,8 +2,8 @@
 
 Team:
 
-* Person 1 - Spencer - Sales
-* Person 2 - Greg - Services
+* Spencer - Sales
+* Greg - Services
 
 ## Design
 When a user opens the site, from the homepage, they should have dropdowns to each category of stuff that they have access to; services, sales, and inventory.

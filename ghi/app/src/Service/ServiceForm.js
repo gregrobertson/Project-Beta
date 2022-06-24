@@ -30,7 +30,6 @@ class ServiceForm extends React.Component {
         const data = { ...this.state };
         /* Changing the format so that the request to the server matches what the server recieves */
         delete data.technicians;
-        console.log(data);
 
         const serviceUrl = 'http://localhost:8080/api/service/';
         const fetchConfig = {
@@ -41,10 +40,8 @@ class ServiceForm extends React.Component {
             },
         };
         const response = await fetch(serviceUrl, fetchConfig);
-        console.log(response);
         if (response.ok) {
             const newService = await response.json();
-            console.log(newService);
 
             // Clearing the form after submission----------------->
             const cleared = {
@@ -68,7 +65,6 @@ class ServiceForm extends React.Component {
 
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
             this.setState({ technicians: data.technicians })
 
         }

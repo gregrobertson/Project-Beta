@@ -9,7 +9,7 @@ function MainPage() {
         <div>
           <img
             src='https://media3.giphy.com/media/qr0FOwPgUk3Cw/giphy.gif?cid=ecf05e47z5zj8rd8jx8gzimu7n8oovnkasr1ipo5f85lst3x&rid=giphy.gif&ct=g'
-            alt='spencer did a thing'
+            alt='Talledega Nights GIF'
             height='400'
           />
         </div>
