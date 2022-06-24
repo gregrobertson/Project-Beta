@@ -28,15 +28,17 @@ function ServiceList({ services }) {
         }
     }
 
-    //-----------------READABLE????------------------------------->
+    //------Making my table data a bit more dynamic-------------------------------->
     const isVip = a => (a) ? "✅" : "❌"
 
-    const centeredTd = str => <td className="align-middle">{str}</td>;
+    //--------Centering my table data----------------------------------------------->
+    const CenteredTd = ({ children }) => <td className="align-middle">{children}</td>;
 
-    const button = (fn, cls, txt) => <td>
-        <button onClick={fn} className={cls}>{txt}</button>
+    //------------Cleaning up the Buttons------------------------------------------->
+    const Button = ({ fn, cls, children }) => <td>
+        <button onClick={fn} className={cls}>{children}</button>
     </td>
-    //------------------------------------------------->
+    //------------------------------------------------------------------------------>
 
 
     return (
@@ -56,15 +58,24 @@ function ServiceList({ services }) {
                 {services?.map(service => {
                     return (
                         <tr key={service.id}>
-                            {centeredTd(service.vin)}
+                            <CenteredTd>{service.vin}             </CenteredTd>
+                            <CenteredTd>{service.customer}        </CenteredTd>
+                            <CenteredTd>{service.date}            </CenteredTd>
+                            <CenteredTd>{service.time}            </CenteredTd>
+                            <CenteredTd>{service.technician.name} </CenteredTd>
+                            <CenteredTd>{service.reason}          </CenteredTd>
+                            <CenteredTd>{isVip(service.is_vip)}   </CenteredTd>
+                            <Button fn={() => DeleteService(service.id)} cls='btn btn-danger'>Cancel</Button>
+                            <Button fn={() => isFinished(service.id)} cls='btn btn-success'>Finished</Button>
+                            {/* {centeredTd{centeredTd(service.vin)}
                             {centeredTd(service.customer)}
                             {centeredTd(service.date)}
                             {centeredTd(service.time)}
                             {centeredTd(service.technician.name)}
                             {centeredTd(service.reason)}
-                            {centeredTd(isVip(service.is_vip))}
-                            {button(() => DeleteService(service.id), 'btn btn-danger', 'Cancel')}
-                            {button(() => isFinished(service.id), 'btn btn-success', 'Finished')}
+                            {centeredTd(isVip(service.is_vip))} */}
+                            {/* {Button(() => DeleteService(service.id), 'btn btn-danger', 'Cancel')}
+                            {Button(() => isFinished(service.id), 'btn btn-success', 'Finished')} */}
                         </tr >
                     );
                 })}
