@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function SalesHistoryList(props) {
   const [salespersons, setSalesPersons] = useState([]);
-  const [salesRecord, setSalesRecord] = useState();
+  const [salesRecord, setSalesRecord] = useState("Any"); // established a default of "Any"
   const [salesData, setSalesData] = useState([]);
   console.log("salesData:", salesData);
   const handleChange = (event) => {
@@ -21,21 +21,7 @@ function SalesHistoryList(props) {
     getSalesData();
   }, []);
 
-  useEffect(() => {
-    const getSalesData = () => {
-      if (!salesRecord) {
-        setSalesData(salespersons);
-        return;
-      }
-
-      const salesPersonData = salespersons.filter((salesperson) => {
-        const salesperson1 = salesperson.sales_person.emp_no;
-        return salesperson1 === Number(salesRecord);
-      });
-      setSalesData(salesPersonData);
-    };
-    getSalesData();
-  }, [salesRecord, salespersons]);
+    const CenteredTd = ({ children}) => <td className="align-middle">{children}</td>
 
   return (
     <>
@@ -48,7 +34,7 @@ function SalesHistoryList(props) {
         id="salesPerson"
         aria-label="Default select example"
       >
-        <option>Select A Salesperson</option>
+        <option disabled value="Any">Select A Salesperson</option>   {/* FIlters "Any" not allowing you to reselect 'Select A Salesperson'  */}
         {props.salesreps.map((salesrep) => {
           return (
             <option
@@ -70,13 +56,15 @@ function SalesHistoryList(props) {
           </tr>
         </thead>
         <tbody>
-          {salesData.map((salesperson) => {
+          {salesData
+          .filter(sale => (sale.emp_no === Number(salesRecord)) || salesRecord==="Any")
+          .map((salesperson) => {
             return (
               <tr key={salesperson.id}>
-                <td>{salesperson.sales_person}</td>
-                <td>{salesperson.customer}</td>
-                <td>{salesperson.vin}</td>
-                <td>${salesperson.price}</td>
+                <CenteredTd>{salesperson.sales_person}</CenteredTd>
+                <CenteredTd>{salesperson.customer}</CenteredTd>
+                <CenteredTd>{salesperson.vin}</CenteredTd>
+                <CenteredTd>${salesperson.price}</CenteredTd>
               </tr>
             );
           })}
