@@ -84,7 +84,7 @@ function Nav() {
           </NavLink>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <NavLink className="dropdown-item" to="/salesperson">
-              New Salesperson
+              New Sales Person
             </NavLink>
             <NavLink className="dropdown-item" to="/customer">
               New Customer
@@ -96,7 +96,7 @@ function Nav() {
               Sales List
             </NavLink>
             <NavLink className="dropdown-item" to="/sales/history">
-              Salesperson History
+              Sales Person History
             </NavLink>
           </div>
         </div>
@@ -106,7 +106,7 @@ function Nav() {
           </ul>
         </div>
       </div>
-    </nav >
+    </nav>
   );
 }
 
