@@ -4,7 +4,7 @@ function SalesHistoryList(props) {
   const [salespersons, setSalesPersons] = useState([]);
   const [salesRecord, setSalesRecord] = useState("Any"); // established a default of "Any"
   const [salesData, setSalesData] = useState([]);
-  console.log("salesData:", salesData);
+  
   const handleChange = (event) => {
     setSalesRecord(event.target.value);
   };
