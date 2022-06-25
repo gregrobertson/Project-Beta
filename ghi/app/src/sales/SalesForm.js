@@ -140,10 +140,10 @@ class SalesForm extends React.Component {
                 >
                   <option value="">Choose an automobile</option>
                   {
-                    console.log(this.state.autos)
+                   
                   }
                   {this.state.autos
-                  .filter(automobile => automobile.sold === "false")
+                  .filter(automobile => !automobile.sold)
                   .map((auto) => {
                     return (
                       <option key={auto.href} value={auto.vin}>
